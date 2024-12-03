@@ -1,0 +1,3 @@
+﻿  vector_sample.cpp
+C:\Users\SystemX\source\repos\template Matrix\template Matrix\vector_sample.cpp(3,6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  template Matrix.vcxproj -> C:\Users\SystemX\source\repos\template Matrix\x64\Debug\template Matrix.exe

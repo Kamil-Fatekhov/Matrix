@@ -3,6 +3,7 @@
 
 void main() {
     TMatrix<int> a(5), b(5), c(3);
+    TVector<int> v(3),res(3);
     int i, j;
  
         for (i = 0; i < 5; i++)
@@ -13,6 +14,10 @@ void main() {
         }
     cout << "input matrix c(3) - >" << endl;
     cin >> c;
+    cout << "input vector v(3) - >" << endl;
+    cin >> v;
+    res = c*v;
+    cout << "Vector res = " << endl << res << endl;
     cout << "Matrix a = " << endl << a << endl;
     cout << "Matrix b = " << endl << b << endl;
     cout << "Matrix c = " << endl << c << endl;

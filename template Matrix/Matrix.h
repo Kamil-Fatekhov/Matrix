@@ -51,7 +51,21 @@ public:
     const TMatrix& operator= (const TMatrix& mt);        // присваивание
     TMatrix  operator+ (const TMatrix& mt);        // сложение
     TMatrix  operator- (const TMatrix& mt);        // вычитание
-    TMatrix  operator* (const TMatrix& mt);        // умножение
+    TMatrix  operator* (const TMatrix& mt);        // умножение 
+    TVector<ValType> operator* (const TVector<ValType>& vc) {
+        TVector<TVector<ValType>> mt = *this;
+        TVector<ValType> tmp(vc);
+        if (tmp.GetSize() != mt.GetSize()) throw exception("gg");
+        TVector<ValType> res(tmp.GetSize());
+        size_t count = 0;
+        for (int i = 0; i != tmp.GetSize(); i++) {
+            for (int j = 0; j != tmp.GetSize()-count; j++) {
+                res[i] += mt[i][j+count] * tmp[j+count];
+            }
+            count++;
+        }
+        return res;
+    }
     // ввод / вывод
     friend istream& operator>>(istream& in, TMatrix& mt)
     {
@@ -73,6 +87,7 @@ TMatrix<ValType>::TMatrix(size_t s) : TVector<TVector<ValType> >(s)
     for (int i = 0; i < s; i++) {
         this->pVector[i] = TVector<ValType>(s - i, i);
     }
+    this->Size = s;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // конструктор копирования
@@ -81,7 +96,7 @@ TMatrix<ValType>::TMatrix(const TMatrix<ValType>& mt) :
 
 template <class ValType> // конструктор преобразования типа
 TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> >& mt) :
-    TVector<TVector<ValType> >(mt) {}
+    TVector<TVector<ValType>>(mt) {}
 
 template <class ValType> // сравнение
 bool TMatrix<ValType>::operator==(const TMatrix<ValType>& mt) const
@@ -134,5 +149,8 @@ TMatrix<ValType> TMatrix<ValType>::operator*(const TMatrix& mt)
     }
     return res;
 }
+
+
+
 
 

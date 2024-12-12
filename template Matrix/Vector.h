@@ -123,7 +123,7 @@ public:
     TVector(const TVector& v);                // конструктор копирования
     TVector(TVector&& moved);
     ~TVector();
-    size_t GetSize() { return Size; } // размер вектора
+    const size_t GetSize() { return Size; } // размер вектора
     size_t GetStartIndex() { return StartIndex; } // индекс первого элемента
     ValType& operator[](const size_t index);
     //ValType& operator[](int pos) const;  // доступ
